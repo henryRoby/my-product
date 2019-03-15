@@ -1,0 +1,47 @@
+.overlay {
+  background-color:rgba(255, 255, 255, 0.9);
+ width: 25%;
+ padding-top: 15px;
+ padding-bottom: 15px;
+ height: 150px;
+ margin-top: 100px;
+ text-align: center;
+ border: 1px solid lightgrey;
+ border-radius:25px;
+ position: absolute;
+ box-shadow: 2px 7px rgba(0, 0, 0, 0.13);
+ position: fixed;
+ top: 0;
+ left: 303px;
+ right: 0;
+ bottom: 0;
+ z-index: 99;
+ background: rgba(255, 255, 255, 0.9);
+ display: -webkit-flex;
+ display: -moz-flex;
+ display: -ms-flex;
+ display: -o-flex;
+ display: flex;
+ justify-content: center;
+ -ms-align-items: center;
+ align-items: center;
+ opacity: 0;
+ -webkit-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
+ -moz-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
+ -o-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
+ animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
+}
+
+#conf{
+  margin: 30px;
+}
+
+#input{
+  margin-top: 5px;
+}
+
+#addErreur{
+   color:red;
+   font-size: 14px;
+}
+

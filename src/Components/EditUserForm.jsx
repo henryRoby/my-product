@@ -18,20 +18,23 @@ const EditUserForm = props => {
   }
 
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault()
+    <div id="popup1" class="overlay">
+                  <form
+                    onSubmit={event => {
+                      event.preventDefault()
 
-        props.updateUser(user.id, user)
-      }}
-    >
-      <label>Prix</label>
-      <input type="number" name="username" value={user.username} onChange={handleInputChange} />
-      <button>Update user</button>
-      <button onClick={() => props.setEditing(false)} className="button muted-button">
-        Cancel
-      </button>
-    </form>
+                      props.updateUser(user.id, user)
+                    }}
+                  >
+                    <input id="input" type="number" name="username" value={user.username} onChange={handleInputChange} />
+                   <div class="content">
+                      <button id="conf">OK</button>
+                      <button id="conf" onClick={() => props.setEditing(false)} className="button muted-button">
+                        Annuler
+                      </button>
+                    </div>
+                  </form>
+    </div>
   )
 }
 

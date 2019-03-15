@@ -1,7 +1,11 @@
 import React, { useState, Fragment } from 'react'
 import AddUserForm from './Components/AddUserForm'
-import EditUserForm from './Components/EditUserForm'
 import UserTable from './Components/UserTable'
+import EditUserForm from './Components/EditUserForm'
+import './App.css'
+import './Components/UserTable.css'
+import './Components/AddUserForm.css'
+import './Components/EditUserForm.css'
 
 const App = () => {
   // Data
@@ -16,15 +20,8 @@ const App = () => {
 
   // CRUD operations
   const addUser = user => {
-    if (!isNaN(user.username)) {
-      user.id = users.length + 1
-      setUsers([ ...users, user ])
-    }else{
-
-          document.getElementById("demo").innerHTML = "Entrer un nombre";
-  
-    }
-    
+    user.id = users.length + 1
+    setUsers([ ...users, user ])
   }
 
   const deleteUser = id => {
@@ -45,6 +42,20 @@ const App = () => {
     setEditing(true)
 
     setCurrentUser({ id: user.id, name: user.name, username: user.username })
+  }
+
+  const somUsername=()=>{
+    var get = document.getElementById('get')
+    let tota = 0
+    for(let i=0 ; i < users.length; i++){
+      tota = tota + parseInt(users[i].username)
+    }
+    let val = [tota] 
+
+    var numbFormat = new Intl.NumberFormat("es-ES")
+    var formaFini = val.map(numbFormat.format)
+    get.innerHTML = formaFini
+    return formaFini.join(";")
   }
 
   return (
@@ -68,6 +79,10 @@ const App = () => {
         </div>
         <div className="flex-large">
           <UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
+        </div>
+         <div className="flex-large">
+          <button id="total" onClick = {()=>{somUsername()}} className="btn btn-primary">TOTAL</button>
+          <p id="resultat">TOTAL = &nbsp;<span id="get"></span>Ar</p>
         </div>
       </div>
     </div>
