@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+
 const Form = props => {
    const initial = { id: null, Produits: '', Prix: '' }
    const [ user, setUser ] = useState(initial)
@@ -33,9 +34,8 @@ const Form = props => {
                <button id="ajout" className="btn btn-primary">Ajouter</button>
             </div>
          </div>
-	
          
-        
+       
 		</form>
    )
 }

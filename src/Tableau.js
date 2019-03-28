@@ -6,7 +6,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 class Tableau extends Component {
   submit = (e,a) => {
     confirmAlert({
-      title: 'Suppression Produit',
+      title: 'suppression d/heure',
       message:a ,
       buttons: [
         {
@@ -36,7 +36,7 @@ class Tableau extends Component {
           <th scope="col" className="act">Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody  >
         {this.props.users.length > 0 ? (
           this.props.users.map(user => (
             <tr>
@@ -44,48 +44,60 @@ class Tableau extends Component {
               <td>{user.Produits}</td>
               <td id="prix">{user.Prix}</td>
               <td>
-              
-          <button aria-label="Supprimer" id="suppr"
-            onClick={() => this.submit(user.id,user.Produits)} className ="btn btn-danger" >X</button>
 
-            <button className ="btn btn-success" id='edit'
-            onClick={(e) => {
-              confirmAlert({
-                  customUI: ({ onClose }) => {
-                    return (  
-                      <form id='ID'>
-                        <center>
-                          <div>
-                            <input name='input' placeholder={ user.Prix } id="e" className="modifier"></input><br/>
-                            
-                            <div id="gt"></div>                                             
-                            <button id="g" className="btn btn-dark"
-                            onClick={() => {
-                              e.preventDefault()
-                              
-                              var test = document.forms['ID'].elements['input'].value
-                                
-                                 
-                                  user.Prix = test;
-                                  this.props.updateUser(user.id, user)
-                                
-                                  onClose();
-                                
-                              }
-                            } 
-                            >Ok</button>
 
-                            <button id="l" className="btn btn-dark" onClick={onClose}>Annuler</button>
-                          </div>
-                        </center>
-                      </form>
-                    );
+                <div className="row">
+                
+                    
+                    <button aria-label="Supprimer" id="suppr"
+                       onClick={() => this.submit(user.id,user.Produits)} className ="btn btn-danger" > <e id="ex">X</e></button>
+                    
+
+    
+                    <button  className ="btn btn-success" id='edit'
+                    onClick={(e) => {
+                      confirmAlert({
+                          customUI: ({ onClose }) => {
+                            return (  
+                              <form id='ID'>
+                                <center>
+                                  <div>
+                                    <input name='input' placeholder={ user.Prix } id="e" className="modifier"></input><br/>
+                                    
+                                    <div id="gt"></div>                                             
+                                    <button id="g" className="btn btn-dark"
+                                    onClick={() => {
+                                      e.preventDefault()
+                                      
+                                      var test = document.forms['ID'].elements['input'].value
+                                        
+                                        
+                                          user.Prix = test;
+                                          this.props.updateUser(user.id, user)
+                                        
+                                          onClose();
+                                        
+                                      }
+                                    } 
+                                    >Ok</button>
+
+                                    <button id="l" className="btn btn-dark" onClick={onClose}>Annuler</button>
+                                  </div>
+                                </center>
+                              </form>
+                            );
+                          }
+                        })
                   }
-                })
-          }
-        }>
-              Edit
-            </button>
+                }>
+                      Edit
+                    </button>
+                    
+                </div>
+              
+         
+                
+          
             
               </td>
             </tr>

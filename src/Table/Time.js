@@ -4,7 +4,10 @@ class Time extends Component {
     constructor(props) { 
         super(props); 
         this.state = {date: new Date(),
-                        rdv:''}; 
+                        rdv:'',
+                        chr:'',
+                        a:''}; 
+        
     } 
 
     componentDidMount() { 
@@ -42,23 +45,27 @@ class Time extends Component {
     }
 
      affichage=(a)=>{
-        if(this.props.users.length>1){
+        
           for(let i=0;i<this.props.users.length;i++){
              let c= this.props.users[i].Produits.split(':')
               if(a<this.heurEnSec(parseInt(c[0]),parseInt(c[1]),parseInt(c[2]))){
                   // i=this.props.users.length
                   console.log("tache a faire",this.props.users[i].Prix)
+                  let ch=this.heurEnSec(parseInt(c[0]),parseInt(c[1]),parseInt(c[2]))-a
+                  this.setState({
+                    chr:this.dateHMS(ch)
+                  })
                   let g= this.props.users[i].Prix
                   let h= this.props.users[i].Produits
+                  this.setState({
+                    a:h
+                  })
                   i=this.props.users.length
-                  return g +" à "+ h
+                  return g 
                   
               }
           }
-        }else{
-          console.log("taille<2: ",this.props.users.length)
-          return " "
-        }
+        
           
       }
       
@@ -69,7 +76,14 @@ class Time extends Component {
      <div className = 'time'> 
      
      <p id ='time'>{this.state.date.getHours()<=9?"0"+this.state.date.getHours():this.state.date.getHours()}:{this.state.date.getMinutes()<=9?"0"+this.state.date.getMinutes():this.state.date.getMinutes()}:{this.state.date.getSeconds()<=9?"0"+this.state.date.getSeconds():this.state.date.getSeconds()}</p> 
-     <p >{this.state.rdv}</p>
+        <p >
+          <label id='tach'>Tache à faire : </label> 
+           <span id='rdv'>{this.state.rdv}&nbsp;
+            <label id='a'> à </label>&nbsp;
+            <label  id ='prec'>{this.state.a}</label>
+           </span> 
+        </p>
+     <p ><label id='chro'>Temps restant : </label>   <span id='chr'>{this.state.chr}</span></p>
      </div> 
     ); 
     } 

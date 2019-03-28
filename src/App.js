@@ -52,8 +52,8 @@ const App = () => {
       }
 
     return (
-      <div className="container">
-      <div className="flex-row">
+      <div  className="container">
+      <div id ='bod' className="flex-row">
         <div className="flex-large">
           <Form  ajouter={ajouter} setCount={setCount} count={count}/>
         </div>

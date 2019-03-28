@@ -1,5 +1,58 @@
-.time{
+#time{
     text-align: center;
     margin-top:50px;
+    animation: movemy 2s linear alternate infinite;
     font-size: 50px;
 }
+@keyframes movemy {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        
+    color: rgb(121, 7, 150) ;
+    }
+}
+
+
+#tach{
+    font-size:30px !important;
+    color: rgb(9, 170, 95);
+}
+
+#chro{
+    font-size:30px !important;
+    color: rgb(10, 168, 76);
+}
+#chr{
+    color : rgb(241, 11, 80);
+    font-size:30px !important;
+    animation: movemydiv 2s linear alternate infinite;
+}
+
+#rdv{
+    color : rgb(109, 194, 190);
+    font-size:30px !important;
+}
+#a{
+    color:black; 
+    font-size:30px !important;
+}
+#prec{
+    font-size:30px !important;
+
+}
+
+
+@keyframes movemydiv {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        border-radius: 4px;
+        background-color: rgb(165, 161, 161);
+    }
+}
+
