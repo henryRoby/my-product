@@ -1,92 +1,71 @@
-import React, { useState, Fragment } from 'react'
-import AddUserForm from './Components/AddUserForm'
-import UserTable from './Components/UserTable'
-import EditUserForm from './Components/EditUserForm'
-import './App.css'
-import './Components/UserTable.css'
-import './Components/AddUserForm.css'
-import './Components/EditUserForm.css'
+import React, { useState } from 'react';
+import Tableau from './Tableau';
+import Form from './Form';
+import './Form.css';
+import './Tableau.css';
+import Time from './Table/Time'
+import './Table/time.css';
+
 
 const App = () => {
-  // Data
-  const usersData = []
-
-  const initialFormState = { id: null, name: '', username: '' }
-
-  // Setting state
-  const [ users, setUsers ] = useState(usersData)
-  const [ currentUser, setCurrentUser ] = useState(initialFormState)
-  const [ editing, setEditing ] = useState(false)
-
-  // CRUD operations
-  const addUser = user => {
-    user.id = users.length + 1
-    setUsers([ ...users, user ])
-  }
-
-  const deleteUser = id => {
-    setEditing(false)
-
-    setUsers(users.filter(user => user.id !== id))
+    const usersData = []
 
 
-  }
-
-  const updateUser = (id, updatedUser) => {
-    setEditing(false)
-
-    setUsers(users.map(user => (user.id === id ? updatedUser : user)))
-  }
-
-  const editRow = user => {
-    setEditing(true)
-
-    setCurrentUser({ id: user.id, name: user.name, username: user.username })
-  }
-
-  const somUsername=()=>{
-    var get = document.getElementById('get')
-    let tota = 0
-    for(let i=0 ; i < users.length; i++){
-      tota = tota + parseInt(users[i].username)
+    const updateUser = (id, updatedUser) => {
+      setUsers(users.map(user => (user.id === id ? updatedUser : user)))
     }
-    let val = [tota] 
+  
+		const [ users, setUsers ] = useState(usersData)
+    const [count, setCount] = useState(0);
 
-    var numbFormat = new Intl.NumberFormat("es-ES")
-    var formaFini = val.map(numbFormat.format)
-    get.innerHTML = formaFini
-    return formaFini.join(";")
-  }
+    const edit =(id,a)  => {
+    
+     users.map(user => (user.id === id ?  user.Prix=a:user.Prix ))
+      
+      console.log(id);
+      console.log(a);
+      
+    }
 
-  return (
-    <div className="container">
+    const ajouter = user => {
+      user.id = count
+      user.Produits= user.Produits.substr(0,1).toUpperCase()+	user.Produits.substr(1,user.Produits.length).toLowerCase()
+      setUsers([ ...users, user ])
+      
+    }
+    const suppr = id => {
+        setUsers(users.filter(user => user.id !== id))
+    }
+    
+
+    const somme=()=>{
+      let total=0;
+      for(let i=0;i<users.length;i++){
+          total=total+parseInt(users[i].Prix);
+      }
+       let a=[total]
+         
+      var numberFormat = new Intl.NumberFormat("es-ES");
+      var formatted = a.map(numberFormat.format);
+      
+      return formatted.join("; ")
+      }
+
+    return (
+      <div className="container">
       <div className="flex-row">
         <div className="flex-large">
-          {editing ? (
-            <Fragment>
-              <EditUserForm
-                editing={editing}
-                setEditing={setEditing}
-                currentUser={currentUser}
-                updateUser={updateUser}
-              />
-            </Fragment>
-          ) : (
-            <Fragment>
-              <AddUserForm addUser={addUser} />
-            </Fragment>
-          )}
+          <Form  ajouter={ajouter} setCount={setCount} count={count}/>
+        </div>
+        <div>
+          <Time  users={users}/>
         </div>
         <div className="flex-large">
-          <UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
-        </div>
-         <div className="flex-large">
-          <button id="total" onClick = {()=>{somUsername()}} className="btn btn-primary">TOTAL</button>
-          <p id="resultat">TOTAL = &nbsp;<span id="get"></span>Ar</p>
+          <Tableau  users={users} suppr={suppr} edit={edit} somme={somme}  updateUser={updateUser}/>
         </div>
       </div>
     </div>
-  )
-}
+    )
+  };
 
-export default App
+export default App;

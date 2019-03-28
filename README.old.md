@@ -1,3 +1,3 @@
 # my-product
-    RAKOTOMALALA Sitrakaniaina
-    RAZANABELAHY Henri
+    Princy
+    Henri
